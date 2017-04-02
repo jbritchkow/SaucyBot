@@ -22,6 +22,24 @@
       "intent": "RemoveIngredient"
     },
     {
+      "slots": [
+        {
+          "name": "Ingredient",
+          "type": "INGREDIENTS"
+        }
+      ],
+      "intent": "AddIngredient"
+    },
+    {
+     "slots": [
+       {
+          "name": "Message",
+          "type": "INGREDIENTS"
+       }
+      ],
+      "intent": "Reminder"
+    },
+    {
       "intent": "AMAZON.HelpIntent"
     },
     {
