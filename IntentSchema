@@ -1,0 +1,25 @@
+{
+  "intents": [
+    {
+      "intent": "GetLuckyNumbers"
+    },
+    {
+      "slots": [
+        {
+          "name": "Ingredient",
+          "type": "INGREDIENTS"
+        }
+      ],
+      "intent": "IngredientSearch"
+    },
+    {
+      "slots": [
+        {
+          "name": "Ingredient",
+          "type": "INGREDIENTS"
+        }
+      ],
+      "intent": "RemoveIngredient"
+    }
+  ]
+}
