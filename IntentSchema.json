@@ -1,7 +1,13 @@
 {
   "intents": [
     {
-      "intent": "GetLuckyNumbers"
+      "intent": "IWantToMakeIntent",
+      "slots": [
+        {
+          "name": "Recipe",
+          "type": "RECIPES"
+        }
+      ]
     },
     {
       "slots": [
