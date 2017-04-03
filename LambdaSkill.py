@@ -1,5 +1,33 @@
 # --------------- Functions that control the skill's behavior ------------------
 
+def can_recipe_be_made(intent, session):
+    """ Checks if the recipe is in the Cookbook
+        Checks if the Pantry contains all necessary ingredients
+    """
+
+    card_title = intent['name']
+    session_attributes = {}
+    should_end_session = False
+
+    if 'Recipe' in intent['slots']:
+        requested_recipe = intent['slots']['Recipe']['value']
+        
+        """
+        #check mongodb for recipe
+        MongoClientURI mongoClientURI = new MongoClientURI(mongoURl);
+        MongoClient mongoClient = new MongoClient(mongoClientURI);
+        MongoDatabase db = mongoClient.getDatabase(mongoDB);
+        """
+        
+        speech_output = "You have all the ingredients to make that recipe."
+        reprompt_text = "You have all the ingredients to make that recipe."
+    else:
+        speech_output = "Please specify a recipe."
+        reprompt_text = "You need to specify a recipe that you would like to make."
+        
+    return build_response(session_attributes, build_speechlet_response(
+        card_title, speech_output, reprompt_text, should_end_session))
+
 def get_welcome_response():
     """ If we wanted to initialize the session to have some attributes we could
     add those here
