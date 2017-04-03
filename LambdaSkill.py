@@ -18,9 +18,27 @@ def can_recipe_be_made(intent, session):
         MongoClient mongoClient = new MongoClient(mongoClientURI);
         MongoDatabase db = mongoClient.getDatabase(mongoDB);
         """
+        missing_flag = False
+        missing_ingredients = []
+        recipe_ingredients = ['spaghetti','meatballs']
+        pantry_ingredients = ['spaghetti','red sauce','meatballs','basil']
         
-        speech_output = "You have all the ingredients to make that recipe."
-        reprompt_text = "You have all the ingredients to make that recipe."
+        for x in recipe_ingredients:
+            if x not in pantry_ingredients:
+                missing_flag = True
+                missing_ingredients.append(x)
+                
+        if missing_flag:
+            speech_output = "You are missing some ingredients."
+            for x in missing_ingredients:
+                speech_output += x + ", "
+            speech_output = speech_output[:-1] #cut trailing comma        
+            reprompt_text = speech_output
+
+        else:
+            speech_output = "You have all the ingredients to make that recipe."
+            reprompt_text = "You have all the ingredients to make that recipe."   
+            
     else:
         speech_output = "Please specify a recipe."
         reprompt_text = "You need to specify a recipe that you would like to make."
