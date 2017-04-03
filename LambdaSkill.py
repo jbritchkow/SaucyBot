@@ -29,10 +29,10 @@ def can_recipe_be_made(intent, session):
                 missing_ingredients.append(x)
                 
         if missing_flag:
-            speech_output = "You are missing some ingredients."
+            speech_output = "You are missing some ingredients. "
             for x in missing_ingredients:
                 speech_output += x + ", "
-            speech_output = speech_output[:-1] #cut trailing comma        
+            speech_output = speech_output[:-2] #cut trailing comma        
             reprompt_text = speech_output
 
         else:
