@@ -8,7 +8,7 @@ http://amzn.to/1LGWsLG
 """
 
 from __future__ import print_function
-#import pymongo
+import pymongo
 #import twilio
 
 uri = 'mongodb://cwmason:Capstone2017@ec2-34-201-51-167.compute-1.amazonaws.com'
@@ -224,14 +224,14 @@ def on_intent(intent_request, session):
         raise ValueError("Invalid intent")
 
 
-def on_session_ended(session_ended_request, session, client):
+def on_session_ended(session_ended_request, session, mongo_client):
     """ Called when the user ends the session.
 
     Is not called when the skill returns should_end_session=true
     """
     print("on_session_ended requestId=" + session_ended_request['requestId'] +
           ", sessionId=" + session['sessionId'])
-    client.close()
+    mongo_client.close()
 
 
 # --------------- Main handler ------------------
