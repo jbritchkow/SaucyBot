@@ -82,8 +82,8 @@ def can_recipe_be_made(intent, session):
             speech_output = speech_output[:-2]  # cut trailing comma
             reprompt_text = speech_output
         '''
-        if missing.pop() == "Recipe not in Cookbook":
-            print 'Hello'
+        if missing_ingredients is None:
+            speech_output = "Recipe not in Cookbook"
         else:
             speech_output = "You have all the ingredients to make that recipe."
             reprompt_text = "You have all the ingredients to make that recipe."
@@ -300,8 +300,7 @@ def checkPantry(recipe, db):
     missing = []
     ingredients = recipeIngredients(recipe, db)
     if ingredients is None:
-        missing.append('Recipe not in Cookbook')
-        return missing
+        return None
     for item in ingredients:
         if (ingredientSearch(item, db)) == False:
             missing.append(item)
