@@ -1,0 +1,6 @@
+first, pull changes from origin/master
+then create branch for your changes (new_feature)
+do work
+commit changes
+switch to origin/master branch
+merge new_feature branch
