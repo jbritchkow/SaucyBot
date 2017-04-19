@@ -51,6 +51,10 @@ def load_client():
     return client['saucybot']
 
 
+def check_tag(intent, session):
+    #TODO
+
+
 def can_recipe_be_made(intent, session):
     """ Checks if the recipe is in the Cookbook
         Checks if the Pantry contains all necessary ingredients
