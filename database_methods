@@ -32,7 +32,7 @@ def lambda_handler(event, context):
     #possible = searchCookbookOn(['italian', 'cheesy'], db1)
     for x in possible:
         print (x)
-    c.close()
+    client.close()
     return 'All done!'
     #raise Exception('Something went wrong')
 
