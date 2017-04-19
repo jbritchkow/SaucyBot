@@ -233,9 +233,6 @@ def on_session_ended(session_ended_request, session, mongo_client):
 
 
 # --------------- Main handler ------------------
-def test_func():
-    print('test')
-
 
 def lambda_handler(event, context):
     """ Route the incoming request based on type (LaunchRequest, IntentRequest,
