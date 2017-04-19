@@ -52,7 +52,11 @@ def load_client():
 
 
 def check_tag(intent, session):
-    #TODO
+    """ Filters all recipes in the cookbook by the specified tag
+        Returns list of all recipes that contain that tag
+    """
+    db = load_client()
+    #TODO implement
 
 
 def can_recipe_be_made(intent, session):
