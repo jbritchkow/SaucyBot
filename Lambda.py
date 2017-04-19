@@ -47,10 +47,15 @@ def build_response(session_attributes, speechlet_response):
 
 
 # --------------- Functions that control the skill's behavior ------------------
-def can_recipe_be_made(intent, session, db):
+def load_client():
+    return client['saucybot']
+
+
+def can_recipe_be_made(intent, session):
     """ Checks if the recipe is in the Cookbook
         Checks if the Pantry contains all necessary ingredients
     """
+    db = load_client()
 
     card_title = intent['name']
     session_attributes = {}
@@ -59,7 +64,7 @@ def can_recipe_be_made(intent, session, db):
     if 'Recipe' in intent['slots']:
         requested_recipe = intent['slots']['Recipe']['value']
 
-        #recipeSearch(requested_recipe, db)
+        recipeSearch(requested_recipe, db)
 
         """
         #check mongodb for recipe
@@ -83,7 +88,7 @@ def can_recipe_be_made(intent, session, db):
             speech_output = "You are missing some ingredients. "
             for x in missing_ingredients:
                 speech_output += x + ", "
-            speech_output = speech_output[:-2] #cut trailing comma
+            speech_output = speech_output[:-2]  # cut trailing comma
             reprompt_text = speech_output
 
         else:
