@@ -328,6 +328,6 @@ def searchCookbookAll(db):
                 recipes.append(item['name'])
     except:
         print
-        'Something wrong in try/except #1'
+        'Something wrong in try/except #1 tes test test'
         return None
     return recipes
