@@ -11,8 +11,8 @@ import json
 uri = 'mongodb://cwmason:Capstone2017@ec2-34-201-51-167.compute-1.amazonaws.com'
 
 def lambda_handler(event, context):
-    c = pymongo.MongoClient(uri)
-    db1 = c['saucybot']
+    client = pymongo.MongoClient(uri)
+    db1 = client['saucybot']
     #for d in db1.pantry.find():
     #    print (d)
     #isThere = ingredientSearch('milk', db1)
