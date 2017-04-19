@@ -8,6 +8,11 @@ http://amzn.to/1LGWsLG
 """
 
 from __future__ import print_function
+#import pymongo
+#import twilio
+
+uri = 'mongodb://cwmason:Capstone2017@ec2-34-201-51-167.compute-1.amazonaws.com'
+client = None
 
 
 # --------------- Helpers that build all of the responses ----------------------
@@ -42,6 +47,56 @@ def build_response(session_attributes, speechlet_response):
 
 
 # --------------- Functions that control the skill's behavior ------------------
+def can_recipe_be_made(intent, session, db):
+    """ Checks if the recipe is in the Cookbook
+        Checks if the Pantry contains all necessary ingredients
+    """
+
+    card_title = intent['name']
+    session_attributes = {}
+    should_end_session = False
+
+    if 'Recipe' in intent['slots']:
+        requested_recipe = intent['slots']['Recipe']['value']
+
+        #recipeSearch(requested_recipe, db)
+
+        """
+        #check mongodb for recipe
+        MongoClientURI mongoClientURI = new MongoClientURI(mongoURl);
+        MongoClient mongoClient = new MongoClient(mongoClientURI);
+        MongoDatabase db = mongoClient.getDatabase(mongoDB);
+        """
+
+
+        missing_flag = False
+        missing_ingredients = []
+        recipe_ingredients = ['spaghetti','meatballs']
+        pantry_ingredients = ['spaghetti','red sauce','meatballs','basil']
+
+        for x in recipe_ingredients:
+            if x not in pantry_ingredients:
+                missing_flag = True
+                missing_ingredients.append(x)
+
+        if missing_flag:
+            speech_output = "You are missing some ingredients. "
+            for x in missing_ingredients:
+                speech_output += x + ", "
+            speech_output = speech_output[:-2] #cut trailing comma
+            reprompt_text = speech_output
+
+        else:
+            speech_output = "You have all the ingredients to make that recipe."
+            reprompt_text = "You have all the ingredients to make that recipe."
+
+    else:
+        speech_output = "Please specify a recipe."
+        reprompt_text = "You need to specify a recipe that you would like to make."
+
+    return build_response(session_attributes, build_speechlet_response(
+        card_title, speech_output, reprompt_text, should_end_session))
+
 
 def get_welcome_response():
     """ If we wanted to initialize the session to have some attributes we could
@@ -132,6 +187,8 @@ def on_session_started(session_started_request, session):
 
     print("on_session_started requestId=" + session_started_request['requestId']
           + ", sessionId=" + session['sessionId'])
+    client = pymongo.MongoClient(uri)
+    return client
 
 
 def on_launch(launch_request, session):
@@ -167,14 +224,14 @@ def on_intent(intent_request, session):
         raise ValueError("Invalid intent")
 
 
-def on_session_ended(session_ended_request, session):
+def on_session_ended(session_ended_request, session, client):
     """ Called when the user ends the session.
 
     Is not called when the skill returns should_end_session=true
     """
     print("on_session_ended requestId=" + session_ended_request['requestId'] +
           ", sessionId=" + session['sessionId'])
-    # add cleanup logic here
+    client.close()
 
 
 # --------------- Main handler ------------------
@@ -196,7 +253,7 @@ def lambda_handler(event, context):
     #     raise ValueError("Invalid Application ID")
 
     if event['session']['new']:
-        on_session_started({'requestId': event['request']['requestId']},
+        db1 = on_session_started({'requestId': event['request']['requestId']},
                            event['session'])
 
     if event['request']['type'] == "LaunchRequest":
@@ -204,4 +261,4 @@ def lambda_handler(event, context):
     elif event['request']['type'] == "IntentRequest":
         return on_intent(event['request'], event['session'])
     elif event['request']['type'] == "SessionEndedRequest":
-        return on_session_ended(event['request'], event['session'])
+        return on_session_ended(event['request'], event['session'], client)
