@@ -1,6 +1,6 @@
 # --------------- Functions that control the skill's behavior ------------------
 
-def can_recipe_be_made(intent, session):
+def can_recipe_be_made(intent, session, db):
     """ Checks if the recipe is in the Cookbook
         Checks if the Pantry contains all necessary ingredients
     """
@@ -12,12 +12,16 @@ def can_recipe_be_made(intent, session):
     if 'Recipe' in intent['slots']:
         requested_recipe = intent['slots']['Recipe']['value']
         
+        #recipeSearch(requested_recipe, db)
+        
         """
         #check mongodb for recipe
         MongoClientURI mongoClientURI = new MongoClientURI(mongoURl);
         MongoClient mongoClient = new MongoClient(mongoClientURI);
         MongoDatabase db = mongoClient.getDatabase(mongoDB);
         """
+        
+        
         missing_flag = False
         missing_ingredients = []
         recipe_ingredients = ['spaghetti','meatballs']
