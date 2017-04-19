@@ -4,3 +4,5 @@ do work
 commit changes
 switch to origin/master branch
 merge new_feature branch
+update project
+go to VCS > Git > Push, and push the changes
