@@ -112,6 +112,28 @@ def do_i_have_ingredient(intent, session):
         card_title, speech_output, reprompt_text, should_end_session))
 
 
+def out_of_ingredient(intent, session):
+    """Checks the Pantry for given ingredient
+    """
+
+    db = load_client()
+    card_title = intent['name']
+    session_attributes = {}
+    should_end_session = False
+
+    if 'Ingredient' in intent['slots']:
+        requested_ingredient = intent['slots']['Ingredient']['value']
+        removeIngredient(requested_ingredient, db)
+        speech_output = requested_ingredient + " was removed from the pantry."
+        reprompt_text = requested_ingredient + " was successfully removed from your pantry."
+    else:
+        speech_output = "Please specify an ingredient."
+        reprompt_text = "You need to specify an ingredient that you ran out of."
+
+    return build_response(session_attributes, build_speechlet_response(
+        card_title, speech_output, reprompt_text, should_end_session))
+
+
 def check_tag(intent, session):
     """ Filters all recipes in the cookbook by the specified tag
         Returns list of all recipes that contain that tag
@@ -285,9 +307,9 @@ def on_intent(intent_request, session):
     if intent_name == "IWantToMakeIntent":
         pass
     elif intent_name == "IngredientSearch":
-        pass
+        return do_i_have_ingredient(intent, session)
     elif intent_name == "RemoveIngredient":
-        pass
+        return out_of_ingredient(intent, session)
     elif intent_name == "AddIngredient":
         pass
     elif intent_name == "Reminder":
