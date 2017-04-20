@@ -328,7 +328,6 @@ def searchCookbookAll(db):
             if len(checkPantry(item['name'], db)) == 0:
                 recipes.append(item['name'])
     except:
-        print
-        'Something wrong in try/except #1 tes test test'
+        print ('Something wrong in try/except #1')
         return None
     return recipes
