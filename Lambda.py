@@ -75,7 +75,7 @@ def yes_handler(intent, session):
         requested_ingredient = session['attributes']['reminder']
         speech_output = "Okay, sending reminder."
         reprompt_text = "Reminder sent."
-        message = mongo_client.api.account.messages.create(to="+12316851234", from_="+12242315628", body="Remember to buy " + requested_ingredient + " at the store!")
+        message = mongo_client.api.account.messages.create(to="+12154506570", from_="+12242315628", body="Remember to buy " + requested_ingredient + " at the store!")
     else:
         speech_output = "I don't understand what you mean."
         reprompt_text = speech_output
@@ -282,12 +282,30 @@ def on_intent(intent_request, session):
     intent_name = intent_request['intent']['name']
 
     # Dispatch to your skill's intent handlers
-    if intent_name == "MyColorIsIntent":
-        return set_color_in_session(intent, session)
-    elif intent_name == "WhatsMyColorIntent":
-        return get_color_from_session(intent, session)
+    if intent_name == "IWantToMakeIntent":
+        pass
+    elif intent_name == "IngredientSearch":
+        pass
+    elif intent_name == "RemoveIngredient":
+        pass
+    elif intent_name == "AddIngredient":
+        pass
+    elif intent_name == "Reminder":
+        pass
     elif intent_name == "AMAZON.HelpIntent":
-        return get_welcome_response()
+        pass
+    elif intent_name == "AMAZON.NextIntent":
+        pass
+    elif intent_name == "AMAZON.NoIntent":
+        pass
+    elif intent_name == "AMAZON.PreviousIntent":
+        pass
+    elif intent_name == "AMAZON.RepeatIntent":
+        pass
+    elif intent_name == "AMAZON.StartOverIntent":
+        pass
+    elif intent_name == "AMAZON.YesIntent":
+        return yes_handler(intent, session)
     elif intent_name == "AMAZON.CancelIntent" or intent_name == "AMAZON.StopIntent":
         return handle_session_end_request()
     else:
