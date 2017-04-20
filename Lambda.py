@@ -76,8 +76,6 @@ def yes_handler(intent, session):
         speech_output = "Okay, sending reminder."
         reprompt_text = "Reminder sent."
         message = mongo_client.api.account.messages.create(to="+12316851234", from_="+12242315628", body="Remember to buy " + requested_ingredient + " at the store!")
-
-
     else:
         speech_output = "I don't understand what you mean."
         reprompt_text = speech_output
