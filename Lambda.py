@@ -57,6 +57,10 @@ def build_response(session_attributes, speechlet_response):
     }
 
 
+def set_session_attributes(index, length, arr):
+    return {{"curIndex": index}, {"length": length}, {"arr": arr}}
+
+
 # --------------- Functions that control the skill's behavior ------------------
 def load_client():
     return mongo_client['saucybot']
@@ -147,11 +151,77 @@ def get_recipes_from_tag(intent, session):
     if 'Tag' in intent['slots']:
         tag = intent['slots']['Tag']['value']
         recipes = searchCookbookOn([tag], db)
-        #TODO iterate through recipes
+        numResults = len(recipes)
+
+        if numResults == 0:
+            speech_output = "There are no recipes with that tag."
+            reprompt_text = speech_output
+        else:
+            session_attributes = set_session_attributes(0, numResults, recipes)
+            speech_output = "The first result is " + recipes[0] + ". Use commands select, next, previous, start over, or stop to navigate the list."
+            reprompt_text = "Possible commands are select, next, previous, start over, or stop."
     else:
         speech_output = "Please specify a tag."
         reprompt_text = "You need to specify a tag to filter the recipes."
 
+    return build_response(session_attributes, build_speechlet_response(
+        card_title, speech_output, reprompt_text, should_end_session))
+
+
+def next_handler(intent, session):
+    """ Handler for going to the next iteration in a list
+    """
+
+    card_title = intent['name']
+    should_end_session = False
+
+    if session.get('attributes', {}) and "arr" in session.get('attributes', {}):
+        curIndex = session['attributes']['curIndex']
+        curIndex += 1  # increment since we are going to the next item in list
+        length = session['attributes']['length']
+        arr = session['attributes']['arr']
+
+        if curIndex >= length:  # end of list
+            curIndex -= 1  # reset the index
+            speech_output = "That was the last item."
+            reprompt_text = "Possible commands are select, previous, start over, or stop."
+        else:
+            curItem = arr[curIndex]
+            speech_output = curItem
+            reprompt_text = "Possible commands are select, next, previous, start over, or stop."
+    else:
+        raise RuntimeError("Couldn't find list to iterate through")
+
+    session_attributes = set_session_attributes(curIndex, length, arr)
+    return build_response(session_attributes, build_speechlet_response(
+        card_title, speech_output, reprompt_text, should_end_session))
+
+
+def previous_handler(intent, session):
+    """ Handler for going to the previous iteration in a list
+    """
+
+    card_title = intent['name']
+    should_end_session = False
+
+    if session.get('attributes', {}) and "arr" in session.get('attributes', {}):
+        curIndex = session['attributes']['curIndex']
+        curIndex -= 1  # decrement since we are going to the previous item in list
+        length = session['attributes']['length']
+        arr = session['attributes']['arr']
+
+        if curIndex < 0:  # beginning of list
+            curIndex += 1  # reset the index
+            speech_output = "That was the first item."
+            reprompt_text = "Possible commands are select, next, start over, or stop."
+        else:
+            curItem = arr[curIndex]
+            speech_output = curItem
+            reprompt_text = "Possible commands are select, next, previous, start over, or stop."
+    else:
+        raise RuntimeError("Couldn't find list to iterate through")
+
+    session_attributes = set_session_attributes(curIndex, length, arr)
     return build_response(session_attributes, build_speechlet_response(
         card_title, speech_output, reprompt_text, should_end_session))
 
@@ -286,6 +356,7 @@ def get_color_from_session(intent, session):
         intent['name'], speech_output, reprompt_text, should_end_session))
 """
 
+
 # --------------- Events ------------------
 
 def on_session_started(session_started_request, session):
@@ -320,6 +391,8 @@ def on_intent(intent_request, session):
     # Dispatch to your skill's intent handlers
     if intent_name == "IWantToMakeIntent":
         pass
+    elif intent_name == "FilterOnTagsIntent":
+        return get_recipes_from_tag(intent, session)
     elif intent_name == "IngredientSearch":
         return do_i_have_ingredient(intent, session)
     elif intent_name == "RemoveIngredient":
@@ -327,6 +400,8 @@ def on_intent(intent_request, session):
     elif intent_name == "AddIngredient":
         pass
     elif intent_name == "Reminder":
+        pass
+    elif intent_name == "SelectItemIntent":
         pass
     elif intent_name == "AMAZON.HelpIntent":
         pass

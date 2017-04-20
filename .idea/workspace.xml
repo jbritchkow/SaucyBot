@@ -26,8 +26,8 @@
       <file leaf-file-name="Lambda.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Lambda.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-408">
-              <caret line="87" column="8" lean-forward="false" selection-start-line="87" selection-start-column="8" selection-end-line="87" selection-end-column="8" />
+            <state relative-caret-position="572">
+              <caret line="215" column="86" lean-forward="true" selection-start-line="215" selection-start-column="86" selection-end-line="215" selection-end-column="86" />
               <folding>
                 <element signature="e#330#367#0" expanded="true" />
               </folding>
@@ -379,7 +379,14 @@
       <option name="project" value="LOCAL" />
       <updated>1492657652191</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="get recipes from tags, still need to figure out how to iterate through list with alexa">
+      <created>1492658064741</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1492658064741</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4" />
@@ -430,7 +437,8 @@
     <MESSAGE value="added instructions for workflow" />
     <MESSAGE value="comments" />
     <MESSAGE value="implement out of ingredient" />
-    <option name="LAST_COMMIT_MESSAGE" value="implement out of ingredient" />
+    <MESSAGE value="get recipes from tags, still need to figure out how to iterate through list with alexa" />
+    <option name="LAST_COMMIT_MESSAGE" value="get recipes from tags, still need to figure out how to iterate through list with alexa" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -837,8 +845,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Lambda.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-408">
-          <caret line="87" column="8" lean-forward="false" selection-start-line="87" selection-start-column="8" selection-end-line="87" selection-end-column="8" />
+        <state relative-caret-position="572">
+          <caret line="215" column="86" lean-forward="true" selection-start-line="215" selection-start-column="86" selection-end-line="215" selection-end-column="86" />
           <folding>
             <element signature="e#330#367#0" expanded="true" />
           </folding>
