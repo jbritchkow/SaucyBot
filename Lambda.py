@@ -14,6 +14,11 @@ import pymongo
 uri = 'mongodb://cwmason:Capstone2017@ec2-34-201-51-167.compute-1.amazonaws.com'
 client = None
 
+# set this to true if Alexa is asking user to set a reminder
+# false if Alexa is iterating through a list
+# this way we can split the YES intent
+reminderFlag = True
+
 
 # --------------- Helpers that build all of the responses ----------------------
 
@@ -51,6 +56,29 @@ def load_client():
     return client['saucybot']
 
 
+def yes_handler(intent, session):
+    """ Handler for when the user responds with Yes
+        So far, this is only for sending a reminder
+    """
+
+    card_title = intent['name']
+    session_attributes = {}
+    should_end_session = False
+
+    if session.get('attributes', {}) and "reminder" in session.get('attributes', {}):
+        requested_ingredient = session['attributes']['reminder']
+        speech_output = "Okay, sending reminder."
+        reprompt_text = "Reminder sent."
+        #TODO Twilio
+
+    else:
+        speech_output = "I don't understand what you mean."
+        reprompt_text = speech_output
+
+    return build_response(session_attributes, build_speechlet_response(
+        card_title, speech_output, reprompt_text, should_end_session))
+
+
 def do_i_have_ingredient(intent, session):
     """Checks the Pantry for given ingredient
     """
@@ -65,9 +93,12 @@ def do_i_have_ingredient(intent, session):
         hasIngredient = ingredientSearch(requested_ingredient, db)
         if hasIngredient:
             speech_output = "You have " + requested_ingredient + "."
+            reprompt_text = speech_output
         else:
-            speech_output = "You do not have " + requested_ingredient + "."
-            #TODO reminder
+            speech_output = "You do not have " + requested_ingredient + ". "
+            speech_output += "Would you like to set a reminder?"
+            reprompt_text = "Would you like to set a reminder?"
+            session_attributes = {"reminder", requested_ingredient}
     else:
         speech_output = "Please specify an ingredient."
         reprompt_text = "You need to specify an ingredient that you would like to check."
