@@ -64,22 +64,13 @@ def can_recipe_be_made(intent, session):
     if 'Recipe' in intent['slots']:
         requested_recipe = intent['slots']['Recipe']['value']
 
-        missing = checkPantry(requested_recipe, db)
+        #missing_flag = False
+        missing_ingredients = checkPantry(requested_recipe, db)
 
-        """
-        #check mongodb for recipe
-        MongoClientURI mongoClientURI = new MongoClientURI(mongoURl);
-        MongoClient mongoClient = new MongoClient(mongoClientURI);
-        MongoDatabase db = mongoClient.getDatabase(mongoDB);
-        """
+        #recipe_ingredients = ['spaghetti','meatballs']
+        #pantry_ingredients = ['spaghetti','red sauce','meatballs','basil']
 
-
-        missing_flag = False
-        missing_ingredients = []
-        recipe_ingredients = ['spaghetti','meatballs']
-        pantry_ingredients = ['spaghetti','red sauce','meatballs','basil']
-
-        for x in recipe_ingredients:
+        '''for x in recipe_ingredients:
             if x not in pantry_ingredients:
                 missing_flag = True
                 missing_ingredients.append(x)
@@ -90,7 +81,9 @@ def can_recipe_be_made(intent, session):
                 speech_output += x + ", "
             speech_output = speech_output[:-2]  # cut trailing comma
             reprompt_text = speech_output
-
+        '''
+        if missing.pop() == "Recipe not in Cookbook":
+            print 'Hello'
         else:
             speech_output = "You have all the ingredients to make that recipe."
             reprompt_text = "You have all the ingredients to make that recipe."
