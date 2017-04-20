@@ -9,10 +9,16 @@ http://amzn.to/1LGWsLG
 
 from __future__ import print_function
 import pymongo
-#import twilio
+from twilio.rest import Client
 
+# For Twilio
+account_sid = "ACdeabec075c0137d4fb10755551afd4e4"
+auth_token = "d9756d7b452e88b2f1ba8532aeb508fb"
+twilio_client = Client(account_sid, auth_token)
+
+# For MongoDB
 uri = 'mongodb://cwmason:Capstone2017@ec2-34-201-51-167.compute-1.amazonaws.com'
-client = None
+mongo_client = None
 
 # set this to true if Alexa is asking user to set a reminder
 # false if Alexa is iterating through a list
@@ -53,7 +59,7 @@ def build_response(session_attributes, speechlet_response):
 
 # --------------- Functions that control the skill's behavior ------------------
 def load_client():
-    return client['saucybot']
+    return mongo_client['saucybot']
 
 
 def yes_handler(intent, session):
@@ -69,7 +75,8 @@ def yes_handler(intent, session):
         requested_ingredient = session['attributes']['reminder']
         speech_output = "Okay, sending reminder."
         reprompt_text = "Reminder sent."
-        #TODO Twilio
+        message = mongo_client.api.account.messages.create(to="+12316851234", from_="+12242315628", body="Remember to buy " + requested_ingredient + " at the store!")
+
 
     else:
         speech_output = "I don't understand what you mean."
@@ -289,14 +296,14 @@ def on_intent(intent_request, session):
         raise ValueError("Invalid intent")
 
 
-def on_session_ended(session_ended_request, session, mongo_client):
+def on_session_ended(session_ended_request, session, m_client):
     """ Called when the user ends the session.
 
     Is not called when the skill returns should_end_session=true
     """
     print("on_session_ended requestId=" + session_ended_request['requestId'] +
           ", sessionId=" + session['sessionId'])
-    mongo_client.close()
+    m_client.close()
 
 
 # --------------- Main handler ------------------
@@ -326,7 +333,7 @@ def lambda_handler(event, context):
     elif event['request']['type'] == "IntentRequest":
         return on_intent(event['request'], event['session'])
     elif event['request']['type'] == "SessionEndedRequest":
-        return on_session_ended(event['request'], event['session'], client)
+        return on_session_ended(event['request'], event['session'], mongo_client)
 
 
 # ------------------ Database Methods --------------------------
