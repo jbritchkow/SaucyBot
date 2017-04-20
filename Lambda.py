@@ -64,7 +64,7 @@ def can_recipe_be_made(intent, session):
     if 'Recipe' in intent['slots']:
         requested_recipe = intent['slots']['Recipe']['value']
 
-        recipeSearch(requested_recipe, db)
+        missing = checkPantry(requested_recipe, db)
 
         """
         #check mongodb for recipe
