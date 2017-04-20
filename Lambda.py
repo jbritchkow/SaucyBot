@@ -238,33 +238,24 @@ def can_recipe_be_made(intent, session):
 
     if 'Recipe' in intent['slots']:
         requested_recipe = intent['slots']['Recipe']['value']
-
-        #missing_flag = False
         missing_ingredients = checkPantry(requested_recipe, db)
 
-        #recipe_ingredients = ['spaghetti','meatballs']
-        #pantry_ingredients = ['spaghetti','red sauce','meatballs','basil']
-
-        '''for x in recipe_ingredients:
-            if x not in pantry_ingredients:
-                missing_flag = True
-                missing_ingredients.append(x)
-
-        if missing_flag:
-            speech_output = "You are missing some ingredients. "
-            for x in missing_ingredients:
-                speech_output += x + ", "
-            speech_output = speech_output[:-2]  # cut trailing comma
-            reprompt_text = speech_output
-        '''
         if missing_ingredients is None:
             speech_output = "Recipe not in Cookbook"
-            reprompt_text = "Recipe not in Cookbook"
+            reprompt_text = speech_output
         elif len(missing_ingredients) >= 1:
-            speech_output = "You are missing the following ingredients"
+            speech_output = "You are missing some ingredients. "
+            missing_ingredients_string = ""
+            for x in missing_ingredients:
+                speech_output += x + ", "
+                missing_ingredients_string += x + ", "
+            speech_output = speech_output[:-2]
+            speech_output += "Would you like to set a reminder for these ingredients?"
+            reprompt_text = "Would you like to set a reminder for these ingredients?"
+            session_attributes = {"reminder", missing_ingredients_string}
         else:
             speech_output = "You have all the ingredients to make that recipe."
-            reprompt_text = "You have all the ingredients to make that recipe."
+            reprompt_text = speech_output
 
     else:
         speech_output = "Please specify a recipe."
