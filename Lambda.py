@@ -88,6 +88,9 @@ def can_recipe_be_made(intent, session):
         '''
         if missing_ingredients is None:
             speech_output = "Recipe not in Cookbook"
+            reprompt_text = "Recipe not in Cookbook"
+        elif len(missing_ingredients) >= 1:
+            speech_output = "You are missing the following ingredients"
         else:
             speech_output = "You have all the ingredients to make that recipe."
             reprompt_text = "You have all the ingredients to make that recipe."
