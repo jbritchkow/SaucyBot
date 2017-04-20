@@ -85,7 +85,7 @@ def yes_handler(intent, session):
 
 
 def do_i_have_ingredient(intent, session):
-    """Checks the Pantry for given ingredient
+    """ Checks the Pantry for given ingredient
     """
 
     db = load_client()
@@ -113,7 +113,7 @@ def do_i_have_ingredient(intent, session):
 
 
 def out_of_ingredient(intent, session):
-    """Checks the Pantry for given ingredient
+    """ Removes and ingredient from the Pantry
     """
 
     db = load_client()
@@ -134,12 +134,26 @@ def out_of_ingredient(intent, session):
         card_title, speech_output, reprompt_text, should_end_session))
 
 
-def check_tag(intent, session):
+def get_recipes_from_tag(intent, session):
     """ Filters all recipes in the cookbook by the specified tag
         Returns list of all recipes that contain that tag
     """
+
     db = load_client()
-    #TODO implement
+    card_title = intent['name']
+    session_attributes = {}
+    should_end_session = False
+
+    if 'Tag' in intent['slots']:
+        tag = intent['slots']['Tag']['value']
+        recipes = searchCookbookOn([tag], db)
+        #TODO iterate through recipes
+    else:
+        speech_output = "Please specify a tag."
+        reprompt_text = "You need to specify a tag to filter the recipes."
+
+    return build_response(session_attributes, build_speechlet_response(
+        card_title, speech_output, reprompt_text, should_end_session))
 
 
 def can_recipe_be_made(intent, session):
