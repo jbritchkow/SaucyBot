@@ -51,6 +51,31 @@ def load_client():
     return client['saucybot']
 
 
+def do_i_have_ingredient(intent, session):
+    """Checks the Pantry for given ingredient
+    """
+
+    db = load_client()
+    card_title = intent['name']
+    session_attributes = {}
+    should_end_session = False
+
+    if 'Ingredient' in intent['slots']:
+        requested_ingredient = intent['slots']['Ingredient']['value']
+        hasIngredient = ingredientSearch(requested_ingredient, db)
+        if hasIngredient:
+            speech_output = "You have " + requested_ingredient + "."
+        else:
+            speech_output = "You do not have " + requested_ingredient + "."
+            #TODO reminder
+    else:
+        speech_output = "Please specify an ingredient."
+        reprompt_text = "You need to specify an ingredient that you would like to check."
+
+    return build_response(session_attributes, build_speechlet_response(
+        card_title, speech_output, reprompt_text, should_end_session))
+
+
 def check_tag(intent, session):
     """ Filters all recipes in the cookbook by the specified tag
         Returns list of all recipes that contain that tag
