@@ -167,6 +167,31 @@ def get_recipes_from_tag(intent, session):
     return build_response(session_attributes, build_speechlet_response(
         card_title, speech_output, reprompt_text, should_end_session))
 
+def get_all_possible_recipes(intent, session):
+    """ Returns all of the recipes that can be made in the individual's 
+        cookbook given their current ingredients
+    """
+    db = load_client()
+    card_title = intent['name']
+    session_attributes = {}
+    should_end_session = False
+
+    recipes = searchCookbookAll(db)
+    numResults = len(recipes)
+
+    if recipes is None:
+        speech_output = 'Cannot find recipes in your Cook book'
+        reprompt_text = speech_output
+    elif numResults == 0:
+        speech_output = 'You do not have the ingredients to make anything in your Cook book'
+        reprompt_text = speech_output
+    else:
+        session_attributes = set_session_attributes(0, numResults, recipes)
+        speech_output = "The first result is " + recipes[0] + ". Use commands select, next, previous, start over, or stop to navigate the list."
+        reprompt_text = "Possible commands are select, next, previous, start over, or stop."
+
+    return build_response(session_attributes, build_speechlet_response(
+        card_title, speech_output, reprompt_text, should_end_session))
 
 def next_handler(intent, session):
     """ Handler for going to the next iteration in a list
@@ -384,6 +409,8 @@ def on_intent(intent_request, session):
         pass
     elif intent_name == "FilterOnTagsIntent":
         return get_recipes_from_tag(intent, session)
+    elif intent_name == "WhatCanIMake":
+        return get_all_possible_recipes(intent, session)
     elif intent_name == "IngredientSearch":
         return do_i_have_ingredient(intent, session)
     elif intent_name == "RemoveIngredient":
