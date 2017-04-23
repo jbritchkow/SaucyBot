@@ -167,6 +167,7 @@ def get_recipes_from_tag(intent, session):
     return build_response(session_attributes, build_speechlet_response(
         card_title, speech_output, reprompt_text, should_end_session))
 
+
 def get_all_possible_recipes(intent, session):
     """ Returns all of the recipes that can be made in the individual's 
         cookbook given their current ingredients
@@ -193,8 +194,11 @@ def get_all_possible_recipes(intent, session):
     return build_response(session_attributes, build_speechlet_response(
         card_title, speech_output, reprompt_text, should_end_session))
 
+
 def next_handler(intent, session):
     """ Handler for going to the next iteration in a list
+        stores list, length of list, and current index in session attributes
+        uses these attributes to navigate the list
     """
 
     card_title = intent['name']
@@ -224,6 +228,8 @@ def next_handler(intent, session):
 
 def previous_handler(intent, session):
     """ Handler for going to the previous iteration in a list
+        stores list, length of list, and current index in session attributes
+        uses these attributes to navigate the list
     """
 
     card_title = intent['name']
