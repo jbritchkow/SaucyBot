@@ -476,7 +476,7 @@ def lambda_handler(event, context):
     #     raise ValueError("Invalid Application ID")
 
     if event['session']['new']:
-        db1 = on_session_started({'requestId': event['request']['requestId']},
+        mongo_client = on_session_started({'requestId': event['request']['requestId']},
                            event['session'])
 
     if event['request']['type'] == "LaunchRequest":
