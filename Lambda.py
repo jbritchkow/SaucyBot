@@ -397,6 +397,7 @@ def select_handler(intent, session):
                 missing_ingredients_string += x + ", "
             speech_output = speech_output[:-2]
             speech_output += "Would you like to set a reminder for these ingredients? " \
+                "The first missing ingredient is " + missing_ingredients[0] + ". " \
                 "Use next and previous to navigate the list, or say yes at any time to send reminder."
             reprompt_text = "Would you like to set a reminder for these ingredients?"
             session_attributes = set_session_attributes(0, len(missing_ingredients), missing_ingredients, True)
@@ -436,6 +437,7 @@ def can_recipe_be_made(intent, session):
                 missing_ingredients_string += x + ", "
             speech_output = speech_output[:-2]
             speech_output += "Would you like to set a reminder for these ingredients? " \
+                "The first missing ingredient is " + missing_ingredients[0] + ". " \
                 "Use next and previous to navigate the list, or say yes at any time to send reminder."
             reprompt_text = "Would you like to set a reminder for these ingredients?"
             session_attributes = set_session_attributes(0, len(missing_ingredients), missing_ingredients, True)

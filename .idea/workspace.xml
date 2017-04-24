@@ -27,8 +27,8 @@
       <file leaf-file-name="Lambda.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Lambda.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.8115183">
-              <caret line="381" column="18" selection-start-line="381" selection-start-column="18" selection-end-line="381" selection-end-column="18" />
+            <state vertical-scroll-proportion="0.28795812">
+              <caret line="400" column="102" selection-start-line="400" selection-start-column="102" selection-end-line="400" selection-end-column="102" />
               <folding>
                 <element signature="e#330#367#0" expanded="true" />
               </folding>
@@ -410,7 +410,13 @@
       <option name="project" value="LOCAL" />
       <updated>1493009740465</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="reminders for lists of ingredients">
+      <created>1493011530604</created>
+      <option name="number" value="00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1493011530604</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -495,7 +501,8 @@
     <MESSAGE value="select intent" />
     <MESSAGE value="moved around mongo client stuff so it is just in lambda handler" />
     <MESSAGE value="stuff" />
-    <option name="LAST_COMMIT_MESSAGE" value="stuff" />
+    <MESSAGE value="reminders for lists of ingredients" />
+    <option name="LAST_COMMIT_MESSAGE" value="reminders for lists of ingredients" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -902,8 +909,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Lambda.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.8115183">
-          <caret line="381" column="18" selection-start-line="381" selection-start-column="18" selection-end-line="381" selection-end-column="18" />
+        <state vertical-scroll-proportion="0.28795812">
+          <caret line="400" column="102" selection-start-line="400" selection-start-column="102" selection-end-line="400" selection-end-column="102" />
           <folding>
             <element signature="e#330#367#0" expanded="true" />
           </folding>
