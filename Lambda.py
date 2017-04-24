@@ -365,6 +365,46 @@ def repeat_handler(intent, session):
         card_title, speech_output, reprompt_text, should_end_session))
 
 
+def select_handler(intent, session):
+    """ Handler for selecting the current iteration of a list
+        uses code from can recipe be made intent handler on the current list item
+    """
+    db = load_client()
+
+    card_title = intent['name']
+    should_end_session = False
+
+    if session.get('attributes', {}) and "arr" in session.get('attributes', {}):
+        curIndex = session['attributes']['curIndex']
+        arr = session['attributes']['arr']
+
+        requested_recipe = arr[curIndex]
+        missing_ingredients = checkPantry(requested_recipe, db)
+
+        if missing_ingredients is None:
+            speech_output = "Recipe not in Cookbook"
+            reprompt_text = speech_output
+        elif len(missing_ingredients) >= 1:
+            speech_output = "You are missing some ingredients. "
+            missing_ingredients_string = ""
+            for x in missing_ingredients:
+                speech_output += x + ", "
+                missing_ingredients_string += x + ", "
+            speech_output = speech_output[:-2]
+            speech_output += "Would you like to set a reminder for these ingredients?"
+            reprompt_text = "Would you like to set a reminder for these ingredients?"
+            session_attributes = {"reminder": missing_ingredients_string}
+        else:
+            speech_output = "You have all the ingredients to make that recipe."
+            reprompt_text = speech_output
+
+    else:
+        raise RuntimeError("Couldn't find list to iterate through")
+
+    return build_response(session_attributes, build_speechlet_response(
+        card_title, speech_output, reprompt_text, should_end_session))
+
+
 def can_recipe_be_made(intent, session):
     """ Checks if the recipe is in the Cookbook
         Checks if the Pantry contains all necessary ingredients
@@ -476,7 +516,7 @@ def on_intent(intent_request, session):
     elif intent_name == "AddIngredient":
         return picked_up_ingredient(intent, session)
     elif intent_name == "SelectItemIntent":
-        pass
+        return select_handler(intent, session)
     elif intent_name == "AMAZON.HelpIntent":
         return help_handler(intent, session)
     elif intent_name == "AMAZON.NextIntent":
