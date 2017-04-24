@@ -257,6 +257,31 @@ def previous_handler(intent, session):
         card_title, speech_output, reprompt_text, should_end_session))
 
 
+def start_over_handler(intent, session):
+    """ Handler for going to the first iteration in a list
+        stores list, length of list, and current index in session attributes
+        uses these attributes to navigate the list
+    """
+
+    card_title = intent['name']
+    should_end_session = False
+
+    if session.get('attributes', {}) and "arr" in session.get('attributes', {}):
+        curIndex = 0  # go to first element of list since we are starting over
+        length = session['attributes']['length']
+        arr = session['attributes']['arr']
+
+        curItem = arr[curIndex]
+        speech_output = curItem
+        reprompt_text = "Possible commands are select, next, previous, start over, or stop."
+    else:
+        raise RuntimeError("Couldn't find list to iterate through")
+
+    session_attributes = set_session_attributes(curIndex, length, arr)
+    return build_response(session_attributes, build_speechlet_response(
+        card_title, speech_output, reprompt_text, should_end_session))
+
+
 def can_recipe_be_made(intent, session):
     """ Checks if the recipe is in the Cookbook
         Checks if the Pantry contains all necessary ingredients
