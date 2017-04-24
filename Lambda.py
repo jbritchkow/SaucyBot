@@ -79,7 +79,7 @@ def yes_handler(intent, session):
         requested_ingredient = session['attributes']['reminder']
         speech_output = "Okay, sending reminder."
         reprompt_text = "Reminder sent."
-        message = mongo_client.api.account.messages.create(to="+12154506570", from_="+12242315628", body="Remember to buy " + requested_ingredient + " at the store!")
+        message = twilio_client.api.account.messages.create(to="+12154506570", from_="+12242315628", body="Remember to buy " + requested_ingredient + " at the store!")
     else:
         speech_output = "I don't understand what you mean."
         reprompt_text = speech_output
