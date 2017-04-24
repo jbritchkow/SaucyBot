@@ -506,8 +506,6 @@ def on_intent(intent_request, session):
         return out_of_ingredient(intent, session)
     elif intent_name == "AddIngredient":
         return picked_up_ingredient(intent, session)
-    elif intent_name == "Reminder":
-        pass
     elif intent_name == "SelectItemIntent":
         pass
     elif intent_name == "AMAZON.HelpIntent":
