@@ -437,7 +437,7 @@ def on_intent(intent_request, session):
 
     # Dispatch to your skill's intent handlers
     if intent_name == "IWantToMakeIntent":
-        pass
+        return can_recipe_be_made(intent, session)
     elif intent_name == "FilterOnTagsIntent":
         return get_recipes_from_tag(intent, session)
     elif intent_name == "WhatCanIMake":
@@ -455,15 +455,15 @@ def on_intent(intent_request, session):
     elif intent_name == "AMAZON.HelpIntent":
         pass
     elif intent_name == "AMAZON.NextIntent":
-        pass
+        return next_handler(intent, session)
     elif intent_name == "AMAZON.NoIntent":
         pass
     elif intent_name == "AMAZON.PreviousIntent":
-        pass
+        return previous_handler(intent, session)
     elif intent_name == "AMAZON.RepeatIntent":
         pass
     elif intent_name == "AMAZON.StartOverIntent":
-        pass
+        return start_over_handler(intent, session)
     elif intent_name == "AMAZON.YesIntent":
         return yes_handler(intent, session)
     elif intent_name == "AMAZON.CancelIntent" or intent_name == "AMAZON.StopIntent":

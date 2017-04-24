@@ -27,8 +27,8 @@
       <file leaf-file-name="Lambda.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Lambda.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.65">
-              <caret line="85" column="0" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.125">
+              <caret line="439" column="50" selection-start-line="439" selection-start-column="50" selection-end-line="439" selection-end-column="50" />
               <folding>
                 <element signature="e#330#367#0" expanded="true" />
               </folding>
@@ -354,7 +354,13 @@
       <option name="project" value="LOCAL" />
       <updated>1492998509678</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="comment twilio">
+      <created>1492999550477</created>
+      <option name="number" value="00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1492999550477</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -429,7 +435,8 @@
     <MESSAGE value="updated gitignore" />
     <MESSAGE value="Added WhatCanIMake intent and get_all_possible_recipes method to handle intent/call database methods" />
     <MESSAGE value="changed mongo client to twilio" />
-    <option name="LAST_COMMIT_MESSAGE" value="changed mongo client to twilio" />
+    <MESSAGE value="comment twilio" />
+    <option name="LAST_COMMIT_MESSAGE" value="comment twilio" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -836,8 +843,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Lambda.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.65">
-          <caret line="85" column="0" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.125">
+          <caret line="439" column="50" selection-start-line="439" selection-start-column="50" selection-end-line="439" selection-end-column="50" />
           <folding>
             <element signature="e#330#367#0" expanded="true" />
           </folding>
