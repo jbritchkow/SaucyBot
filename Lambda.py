@@ -221,6 +221,9 @@ def get_recipes_from_tag(intent, session):
         if numResults == 0:
             speech_output = "There are no recipes with that tag."
             reprompt_text = speech_output
+        elif numResults == 1:
+            speech_output = "The only result is " + recipes[0] + ". Anything else?"
+            reprompt_text = speech_output
         else:
             session_attributes = set_session_attributes(0, numResults, recipes)
             speech_output = "The first result is " + recipes[0] + ". Use commands select, next, previous, start over, or stop to navigate the list."
@@ -250,6 +253,9 @@ def get_all_possible_recipes(intent, session):
         reprompt_text = speech_output
     elif numResults == 0:
         speech_output = 'You do not have the ingredients to make anything in your Cook book'
+        reprompt_text = speech_output
+    elif numResults == 1:
+        speech_output = "The only result is " + recipes[0] + ". Anything else?"
         reprompt_text = speech_output
     else:
         session_attributes = set_session_attributes(0, numResults, recipes)
@@ -389,7 +395,11 @@ def select_handler(intent, session):
         if missing_ingredients is None:
             speech_output = "Recipe not in Cookbook"
             reprompt_text = speech_output
-        elif len(missing_ingredients) >= 1:
+        elif len(missing_ingredients) == 1:
+            speech_output = "You are missing " + missing_ingredients[0] + ". Would you like to set a reminder?"
+            reprompt_text = speech_output
+            session_attributes = {"reminder": missing_ingredients[0]}
+        elif len(missing_ingredients) > 1:
             speech_output = "You are missing some ingredients. "
             missing_ingredients_string = ""
             for x in missing_ingredients:
@@ -429,7 +439,11 @@ def can_recipe_be_made(intent, session):
         if missing_ingredients is None:
             speech_output = "Recipe not in Cookbook"
             reprompt_text = speech_output
-        elif len(missing_ingredients) >= 1:
+        elif len(missing_ingredients) == 1:
+            speech_output = "You are missing " + missing_ingredients[0] + ". Would you like to set a reminder?"
+            reprompt_text = speech_output
+            session_attributes = {"reminder": missing_ingredients[0]}
+        elif len(missing_ingredients) > 1:
             speech_output = "You are missing some ingredients. "
             missing_ingredients_string = ""
             for x in missing_ingredients:

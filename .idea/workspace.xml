@@ -27,8 +27,8 @@
       <file leaf-file-name="Lambda.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Lambda.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.28795812">
-              <caret line="400" column="102" selection-start-line="400" selection-start-column="102" selection-end-line="400" selection-end-column="102" />
+            <state vertical-scroll-proportion="-0.530541">
+              <caret line="445" column="42" selection-start-line="445" selection-start-column="42" selection-end-line="445" selection-end-column="42" />
               <folding>
                 <element signature="e#330#367#0" expanded="true" />
               </folding>
@@ -416,7 +416,13 @@
       <option name="project" value="LOCAL" />
       <updated>1493011530604</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="fixed first iteration for listing missing ingredients">
+      <created>1493012104076</created>
+      <option name="number" value="00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1493012104076</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -502,7 +508,8 @@
     <MESSAGE value="moved around mongo client stuff so it is just in lambda handler" />
     <MESSAGE value="stuff" />
     <MESSAGE value="reminders for lists of ingredients" />
-    <option name="LAST_COMMIT_MESSAGE" value="reminders for lists of ingredients" />
+    <MESSAGE value="fixed first iteration for listing missing ingredients" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed first iteration for listing missing ingredients" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -909,8 +916,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Lambda.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.28795812">
-          <caret line="400" column="102" selection-start-line="400" selection-start-column="102" selection-end-line="400" selection-end-column="102" />
+        <state vertical-scroll-proportion="-0.530541">
+          <caret line="445" column="42" selection-start-line="445" selection-start-column="42" selection-end-line="445" selection-end-column="42" />
           <folding>
             <element signature="e#330#367#0" expanded="true" />
           </folding>
