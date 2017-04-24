@@ -58,7 +58,7 @@ def build_response(session_attributes, speechlet_response):
 
 
 def set_session_attributes(index, length, arr):
-    return {{"curIndex": index}, {"length": length}, {"arr": arr}}
+    return {"curIndex": index, "length": length, "arr": arr}
 
 
 # --------------- Functions that control the skill's behavior ------------------
