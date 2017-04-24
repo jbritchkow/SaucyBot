@@ -67,6 +67,28 @@ def load_client():
     return mongo_client['saucybot']
 
 
+def help_handler(intent, session):
+    """ Tells the user what they can ask Alexa
+    """
+
+    card_title = intent['name']
+    session_attributes = {}
+    should_end_session = False
+
+    speech_output = "Some possible commands are: " \
+        "I bought, " \
+        "I ran out of, " \
+        "recipes with tag, " \
+        "do I have,  " \
+        "I want to make, " \
+        "or what can I make."
+
+    reprompt_text = speech_output
+
+    return build_response(session_attributes, build_speechlet_response(
+        card_title, speech_output, reprompt_text, should_end_session))
+
+
 def yes_handler(intent, session):
     """ Handler for when the user responds with Yes
         So far, this is only for sending a reminder
@@ -366,14 +388,12 @@ def get_welcome_response():
 
     session_attributes = {}
     card_title = "Welcome"
+    should_end_session = False
+
     speech_output = "Welcome to Saucy bot. " \
                     "What can I do to help? "
-    # If the user either does not reply to the welcome message or says something
-    # that is not understood, they will be prompted again with this text.
-    reprompt_text = "options include: add or remove ingredient, " \
-                    "list recipes based on tag, " \
-                    "and what can I make. An option to list all recipes you have the ingredients for"
-    should_end_session = False
+    reprompt_text = "Say help for possible commands."
+
     return build_response(session_attributes, build_speechlet_response(
         card_title, speech_output, reprompt_text, should_end_session))
 
@@ -491,7 +511,7 @@ def on_intent(intent_request, session):
     elif intent_name == "SelectItemIntent":
         pass
     elif intent_name == "AMAZON.HelpIntent":
-        pass
+        return help_handler(intent, session)
     elif intent_name == "AMAZON.NextIntent":
         return next_handler(intent, session)
     elif intent_name == "AMAZON.NoIntent":
