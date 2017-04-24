@@ -342,6 +342,29 @@ def start_over_handler(intent, session):
         card_title, speech_output, reprompt_text, should_end_session))
 
 
+def repeat_handler(intent, session):
+    """ Handler for repeating the current iteration of a list
+    """
+
+    card_title = intent['name']
+    should_end_session = False
+
+    if session.get('attributes', {}) and "arr" in session.get('attributes', {}):
+        curIndex = session['attributes']['curIndex']
+        length = session['attributes']['length']
+        arr = session['attributes']['arr']
+
+        curItem = arr[curIndex]
+        speech_output = curItem
+        reprompt_text = "Possible commands are select, next, previous, start over, or stop."
+    else:
+        raise RuntimeError("Couldn't find list to iterate through")
+
+    session_attributes = set_session_attributes(curIndex, length, arr)
+    return build_response(session_attributes, build_speechlet_response(
+        card_title, speech_output, reprompt_text, should_end_session))
+
+
 def can_recipe_be_made(intent, session):
     """ Checks if the recipe is in the Cookbook
         Checks if the Pantry contains all necessary ingredients
@@ -463,7 +486,7 @@ def on_intent(intent_request, session):
     elif intent_name == "AMAZON.PreviousIntent":
         return previous_handler(intent, session)
     elif intent_name == "AMAZON.RepeatIntent":
-        pass
+        return repeat_handler(intent, session)
     elif intent_name == "AMAZON.StartOverIntent":
         return start_over_handler(intent, session)
     elif intent_name == "AMAZON.YesIntent":
