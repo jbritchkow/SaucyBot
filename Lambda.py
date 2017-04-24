@@ -89,6 +89,22 @@ def yes_handler(intent, session):
         card_title, speech_output, reprompt_text, should_end_session))
 
 
+def no_handler(intent, session):
+    """ Handler for when the user responds with No
+        So far, this is only for sending a reminder
+    """
+
+    card_title = intent['name']
+    session_attributes = {}
+    should_end_session = False
+
+    speech_output = "Okay. Any other requests?"
+    reprompt_text = speech_output
+
+    return build_response(session_attributes, build_speechlet_response(
+        card_title, speech_output, reprompt_text, should_end_session))
+
+
 def do_i_have_ingredient(intent, session):
     """ Checks the Pantry for given ingredient
     """
@@ -479,7 +495,7 @@ def on_intent(intent_request, session):
     elif intent_name == "AMAZON.NextIntent":
         return next_handler(intent, session)
     elif intent_name == "AMAZON.NoIntent":
-        pass
+        return no_handler(intent, session)
     elif intent_name == "AMAZON.PreviousIntent":
         return previous_handler(intent, session)
     elif intent_name == "AMAZON.RepeatIntent":
