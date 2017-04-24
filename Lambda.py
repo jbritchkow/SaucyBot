@@ -20,14 +20,8 @@ import pymongo
 uri = 'mongodb://cwmason:Capstone2017@ec2-34-201-51-167.compute-1.amazonaws.com'
 mongo_client = None
 
-# set this to true if Alexa is asking user to set a reminder
-# false if Alexa is iterating through a list
-# this way we can split the YES intent
-reminderFlag = True
-
 
 # --------------- Helpers that build all of the responses ----------------------
-
 def build_speechlet_response(title, output, reprompt_text, should_end_session):
     return {
         'outputSpeech': {
@@ -57,16 +51,18 @@ def build_response(session_attributes, speechlet_response):
     }
 
 
-def set_session_attributes(index, length, arr):
+def set_session_attributes(index, length, arr, reminderFlag = False):
+    if reminderFlag:
+        return {"curIndex": index, "length": length, "arr": arr, "reminder_list": arr}
     return {"curIndex": index, "length": length, "arr": arr}
 
 
-# --------------- Functions that control the skill's behavior ------------------
 def load_client():
     global mongo_client
     return mongo_client['saucybot']
 
 
+# --------------- Functions that control the skill's behavior ------------------
 def help_handler(intent, session):
     """ Tells the user what they can ask Alexa
     """
@@ -104,6 +100,15 @@ def yes_handler(intent, session):
         speech_output = "Okay, sending reminder."
         reprompt_text = "Reminder sent."
 #        message = twilio_client.api.account.messages.create(to="+12154506570", from_="+12242315628", body="Remember to buy " + requested_ingredient + " at the store!")
+    elif session.get('attributes', {}) and "reminder_list" in session.get('attributes', {}):
+        requested_ingredients = session['attributes']['reminder_list']
+        speech_output = "Okay, sending reminder."
+        reprompt_text = "Reminder sent."
+        message_body = "Remember to buy "
+        for ingredient in requested_ingredients:
+            message_body += ingredient + ", "
+        message_body = message_body[:-2]
+#        message = twilio_client.api.account.messages.create(to="+12154506570", from_="+12242315628", body=message_body)
     else:
         speech_output = "I don't understand what you mean."
         reprompt_text = speech_output
@@ -388,12 +393,13 @@ def select_handler(intent, session):
             speech_output = "You are missing some ingredients. "
             missing_ingredients_string = ""
             for x in missing_ingredients:
-                speech_output += x + ", "
+                #speech_output += x + ", "
                 missing_ingredients_string += x + ", "
             speech_output = speech_output[:-2]
-            speech_output += "Would you like to set a reminder for these ingredients?"
+            speech_output += "Would you like to set a reminder for these ingredients? " \
+                "Use next and previous to navigate the list, or say yes at any time to send reminder."
             reprompt_text = "Would you like to set a reminder for these ingredients?"
-            session_attributes = {"reminder": missing_ingredients_string}
+            session_attributes = set_session_attributes(0, len(missing_ingredients), missing_ingredients, True)
         else:
             speech_output = "You have all the ingredients to make that recipe."
             reprompt_text = speech_output
@@ -426,12 +432,13 @@ def can_recipe_be_made(intent, session):
             speech_output = "You are missing some ingredients. "
             missing_ingredients_string = ""
             for x in missing_ingredients:
-                speech_output += x + ", "
+                #speech_output += x + ", "
                 missing_ingredients_string += x + ", "
             speech_output = speech_output[:-2]
-            speech_output += "Would you like to set a reminder for these ingredients?"
+            speech_output += "Would you like to set a reminder for these ingredients? " \
+                "Use next and previous to navigate the list, or say yes at any time to send reminder."
             reprompt_text = "Would you like to set a reminder for these ingredients?"
-            session_attributes = {"reminder": missing_ingredients_string}
+            session_attributes = set_session_attributes(0, len(missing_ingredients), missing_ingredients, True)
         else:
             speech_output = "You have all the ingredients to make that recipe."
             reprompt_text = speech_output
