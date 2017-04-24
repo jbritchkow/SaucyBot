@@ -140,7 +140,7 @@ def do_i_have_ingredient(intent, session):
         requested_ingredient = intent['slots']['Ingredient']['value']
         hasIngredient = ingredientSearch(requested_ingredient, db)
         if hasIngredient:
-            speech_output = "You have " + requested_ingredient + "."
+            speech_output = "You have " + requested_ingredient + ". Anything else?"
             reprompt_text = speech_output
         else:
             speech_output = "You do not have " + requested_ingredient + ". "
