@@ -27,8 +27,8 @@
       <file leaf-file-name="Lambda.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Lambda.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.56333333">
-              <caret line="60" column="59" selection-start-line="60" selection-start-column="59" selection-end-line="60" selection-end-column="59" />
+            <state vertical-scroll-proportion="0.175">
+              <caret line="469" column="49" selection-start-line="469" selection-start-column="49" selection-end-line="469" selection-end-column="49" />
               <folding>
                 <element signature="e#330#367#0" expanded="true" />
               </folding>
@@ -372,7 +372,13 @@
       <option name="project" value="LOCAL" />
       <updated>1493001910788</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="syntax fix">
+      <created>1493001962119</created>
+      <option name="number" value="00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1493001962119</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -450,7 +456,8 @@
     <MESSAGE value="comment twilio" />
     <MESSAGE value="hook up handlers" />
     <MESSAGE value="syntax fixes, global variable access" />
-    <option name="LAST_COMMIT_MESSAGE" value="syntax fixes, global variable access" />
+    <MESSAGE value="syntax fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="syntax fix" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -857,8 +864,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Lambda.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.56333333">
-          <caret line="60" column="59" selection-start-line="60" selection-start-column="59" selection-end-line="60" selection-end-column="59" />
+        <state vertical-scroll-proportion="0.175">
+          <caret line="469" column="49" selection-start-line="469" selection-start-column="49" selection-end-line="469" selection-end-column="49" />
           <folding>
             <element signature="e#330#367#0" expanded="true" />
           </folding>

@@ -117,6 +117,27 @@ def do_i_have_ingredient(intent, session):
         card_title, speech_output, reprompt_text, should_end_session))
 
 
+def picked_up_ingredient(intent, session):
+    """ Adds an ingredient to the pantry
+    """
+
+    db = load_client()
+    card_title = intent['name']
+    session_attributes = {}
+    should_end_session = False
+
+    if 'Ingredient' in intent['slots']:
+        requested_ingredient = intent['slots']['Ingredient']['value']
+        addIngredient(requested_ingredient,db)
+        speech_output = requested_ingredient + "was added to the pantry."
+        reprompt_text = requested_ingredient + "was successfully added to your pantry."
+    else:
+        speech_output = "Please specify an ingredient."
+        reprompt_text = "You need to specify an ingredient that you just picked up."
+    return build_response(session_attributes, build_speechlet_response(
+        card_title, speech_output, reprompt_text, should_end_session))
+
+
 def out_of_ingredient(intent, session):
     """ Removes and ingredient from the Pantry
     """
@@ -448,7 +469,7 @@ def on_intent(intent_request, session):
     elif intent_name == "RemoveIngredient":
         return out_of_ingredient(intent, session)
     elif intent_name == "AddIngredient":
-        pass
+        return picked_up_ingredient(intent, session)
     elif intent_name == "Reminder":
         pass
     elif intent_name == "SelectItemIntent":
