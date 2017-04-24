@@ -63,6 +63,7 @@ def set_session_attributes(index, length, arr):
 
 # --------------- Functions that control the skill's behavior ------------------
 def load_client():
+    global mongo_client
     return mongo_client['saucybot']
 
 
@@ -107,7 +108,7 @@ def do_i_have_ingredient(intent, session):
             speech_output = "You do not have " + requested_ingredient + ". "
             speech_output += "Would you like to set a reminder?"
             reprompt_text = "Would you like to set a reminder?"
-            session_attributes = {"reminder", requested_ingredient}
+            session_attributes = {"reminder": requested_ingredient}
     else:
         speech_output = "Please specify an ingredient."
         reprompt_text = "You need to specify an ingredient that you would like to check."
@@ -308,7 +309,7 @@ def can_recipe_be_made(intent, session):
             speech_output = speech_output[:-2]
             speech_output += "Would you like to set a reminder for these ingredients?"
             reprompt_text = "Would you like to set a reminder for these ingredients?"
-            session_attributes = {"reminder", missing_ingredients_string}
+            session_attributes = {"reminder": missing_ingredients_string}
         else:
             speech_output = "You have all the ingredients to make that recipe."
             reprompt_text = speech_output
@@ -499,10 +500,10 @@ def lambda_handler(event, context):
     # if (event['session']['application']['applicationId'] !=
     #         "amzn1.echo-sdk-ams.app.[unique-value-here]"):
     #     raise ValueError("Invalid Application ID")
+    global mongo_client
 
     if event['session']['new']:
-        mongo_client = on_session_started({'requestId': event['request']['requestId']},
-                           event['session'])
+        mongo_client = pymongo.MongoClient(uri)
 
     if event['request']['type'] == "LaunchRequest":
         return on_launch(event['request'], event['session'])
