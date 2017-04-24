@@ -81,7 +81,8 @@ def help_handler(intent, session):
         "recipes with tag, " \
         "do I have,  " \
         "I want to make, " \
-        "or what can I make."
+        "what can I make, " \
+        "or say exit to quit."
 
     reprompt_text = speech_output
 
@@ -112,8 +113,7 @@ def yes_handler(intent, session):
 
 
 def no_handler(intent, session):
-    """ Handler for when the user responds with No
-        So far, this is only for sending a reminder
+    """ Handler for when the user responds with No or Stop or Cancel
     """
 
     card_title = intent['name']
@@ -463,7 +463,7 @@ def get_welcome_response():
 
 def handle_session_end_request():
     card_title = "Session Ended"
-    speech_output = "Thank you for trying the Alexa Skills Kit sample. " \
+    speech_output = "Thank you for using Saucy Bot. " \
                     "Have a nice day! "
     # Setting this to true ends the session and exits the skill.
     should_end_session = True
@@ -530,7 +530,7 @@ def on_intent(intent_request, session):
     elif intent_name == "AMAZON.YesIntent":
         return yes_handler(intent, session)
     elif intent_name == "AMAZON.CancelIntent" or intent_name == "AMAZON.StopIntent":
-        return handle_session_end_request()
+        return no_handler(intent, session)
     else:
         raise ValueError("Invalid intent")
 
