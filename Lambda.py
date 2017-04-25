@@ -182,7 +182,7 @@ def picked_up_ingredient(intent, session):
 
 
 def out_of_ingredient(intent, session):
-    """ Removes and ingredient from the Pantry
+    """ Removes an ingredient from the Pantry
     """
 
     db = load_client()
@@ -198,6 +198,28 @@ def out_of_ingredient(intent, session):
     else:
         speech_output = "Please specify an ingredient."
         reprompt_text = "You need to specify an ingredient that you ran out of."
+
+    return build_response(session_attributes, build_speechlet_response(
+        card_title, speech_output, reprompt_text, should_end_session))
+
+
+def remove_recipe_handler(intent, session):
+    """ Removes a recipe from the Cookbook
+    """
+
+    db = load_client()
+    card_title = intent['name']
+    session_attributes = {}
+    should_end_session = False
+
+    if 'Recipe' in intent['slots']:
+        requested_recipe = intent['slots']['Recipe']['value']
+        removeRecipe(requested_recipe, db)
+        speech_output = requested_recipe + " was removed from the cookbook."
+        reprompt_text = speech_output
+    else:
+        speech_output = "Please specify a recipe."
+        reprompt_text = "You need to specify a recipe to remove."
 
     return build_response(session_attributes, build_speechlet_response(
         card_title, speech_output, reprompt_text, should_end_session))
@@ -260,6 +282,35 @@ def get_all_possible_recipes(intent, session):
     else:
         session_attributes = set_session_attributes(0, numResults, recipes)
         speech_output = "The first result is " + recipes[0] + ". Use commands select, next, previous, start over, or stop to navigate the list."
+        reprompt_text = "Possible commands are select, next, previous, start over, or stop."
+
+    return build_response(session_attributes, build_speechlet_response(
+        card_title, speech_output, reprompt_text, should_end_session))
+
+
+def get_all_recipes_in_cookbook(intent, session):
+    """ Returns all of the recipes in the cookbook
+    """
+    db = load_client()
+    card_title = intent['name']
+    session_attributes = {}
+    should_end_session = False
+
+    recipes = allRecipes(db)
+    numResults = len(recipes)
+
+    if recipes is None:
+        speech_output = 'You have no recipes in your cook book'
+        reprompt_text = speech_output
+    elif numResults == 0:
+        speech_output = 'You do not have any recipes in your cook book'
+        reprompt_text = speech_output
+    elif numResults == 1:
+        speech_output = "The only recipe is " + recipes[0] + ". Anything else?"
+        reprompt_text = speech_output
+    else:
+        session_attributes = set_session_attributes(0, numResults, recipes)
+        speech_output = "The first recipe is " + recipes[0] + ". Use commands select, next, previous, start over, or stop to navigate the list."
         reprompt_text = "Possible commands are select, next, previous, start over, or stop."
 
     return build_response(session_attributes, build_speechlet_response(
@@ -538,6 +589,10 @@ def on_intent(intent_request, session):
         return picked_up_ingredient(intent, session)
     elif intent_name == "SelectItemIntent":
         return select_handler(intent, session)
+    elif intent_name == "RemoveRecipeIntent":
+        return remove_recipe_handler(intent, session)
+    elif intent_name == "AllRecipesIntent":
+        return get_all_recipes_in_cookbook(intent, session)
     elif intent_name == "AMAZON.HelpIntent":
         return help_handler(intent, session)
     elif intent_name == "AMAZON.NextIntent":
@@ -610,6 +665,10 @@ def removeIngredient(ing, db):
     return db.pantry.remove({'ingredient': ing})
 
 
+def removeRecipe(rec, db):
+    return db.cookbook.remove({'name': rec})
+
+
 def ingredientSearch(ingredient, db):
     return bool(db.pantry.find_one({'ingredient': ingredient}))
 
@@ -661,6 +720,16 @@ def searchCookbookAll(db):
         for item in recs:
             if len(checkPantry(item['name'], db)) == 0:
                 recipes.append(item['name'])
+    except:
+        print ('Something wrong in try/except #1')
+        return None
+    return recipes
+
+
+def allRecipes(db):
+    recipes = []
+    try:
+        recs = db.cookbook.find({})
     except:
         print ('Something wrong in try/except #1')
         return None
