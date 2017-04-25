@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4390817e-2381-479f-b656-13598e2d9516" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lambda.py" afterPath="$PROJECT_DIR$/Lambda.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="SaucyBot.iws" />
@@ -26,8 +27,8 @@
       <file leaf-file-name="Lambda.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Lambda.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.825">
-              <caret line="728" column="19" selection-start-line="728" selection-start-column="19" selection-end-line="728" selection-end-column="19" />
+            <state vertical-scroll-proportion="2.8464224">
+              <caret line="303" column="82" selection-start-line="303" selection-start-column="82" selection-end-line="303" selection-end-column="82" />
               <folding>
                 <element signature="e#101#138#0" expanded="true" />
               </folding>
@@ -445,7 +446,13 @@
       <option name="project" value="LOCAL" />
       <updated>1493159288315</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="comment">
+      <created>1493159294129</created>
+      <option name="number" value="00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1493159294129</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -939,8 +946,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Lambda.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.825">
-          <caret line="728" column="19" selection-start-line="728" selection-start-column="19" selection-end-line="728" selection-end-column="19" />
+        <state vertical-scroll-proportion="2.8464224">
+          <caret line="303" column="82" selection-start-line="303" selection-start-column="82" selection-end-line="303" selection-end-column="82" />
           <folding>
             <element signature="e#101#138#0" expanded="true" />
           </folding>

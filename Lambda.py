@@ -120,7 +120,7 @@ def no_handler(intent, session):
     session_attributes = {}
     should_end_session = False
 
-    speech_output = "Okay. Any other requests?"
+    speech_output = "Okay. What else can I do?"
     reprompt_text = speech_output
 
     return build_response(session_attributes, build_speechlet_response(
@@ -140,7 +140,7 @@ def do_i_have_ingredient(intent, session):
         requested_ingredient = intent['slots']['Ingredient']['value']
         hasIngredient = ingredientSearch(requested_ingredient, db)
         if hasIngredient:
-            speech_output = "You have " + requested_ingredient + ". Anything else?"
+            speech_output = "You have " + requested_ingredient + ". What else can I do?"
             reprompt_text = speech_output
         else:
             speech_output = "You do not have " + requested_ingredient + ". "
@@ -239,7 +239,7 @@ def get_recipes_from_tag(intent, session):
             speech_output = "There are no recipes with that tag."
             reprompt_text = speech_output
         elif numResults == 1:
-            speech_output = "The only result is " + recipes[0] + ". Anything else?"
+            speech_output = "The only result is " + recipes[0] + ". What else can I do?"
             reprompt_text = speech_output
         else:
             session_attributes = set_session_attributes(0, numResults, recipes)
@@ -272,7 +272,7 @@ def get_all_possible_recipes(intent, session):
         speech_output = 'You do not have the ingredients to make anything in your Cook book'
         reprompt_text = speech_output
     elif numResults == 1:
-        speech_output = "The only result is " + recipes[0] + ". Anything else?"
+        speech_output = "The only result is " + recipes[0] + ". What else can I do?"
         reprompt_text = speech_output
     else:
         session_attributes = set_session_attributes(0, numResults, recipes)
@@ -301,7 +301,7 @@ def get_all_recipes_in_cookbook(intent, session):
         speech_output = 'You do not have any recipes in your cook book'
         reprompt_text = speech_output
     elif numResults == 1:
-        speech_output = "The only recipe is " + recipes[0] + ". Anything else?"
+        speech_output = "The only recipe is " + recipes[0] + ". What else can I do?"
         reprompt_text = speech_output
     else:
         session_attributes = set_session_attributes(0, numResults, recipes)
