@@ -27,8 +27,8 @@
       <file leaf-file-name="Lambda.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Lambda.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="2.8464224">
-              <caret line="303" column="82" selection-start-line="303" selection-start-column="82" selection-end-line="303" selection-end-column="82" />
+            <state vertical-scroll-proportion="0.06333333">
+              <caret line="572" column="42" selection-start-line="572" selection-start-column="42" selection-end-line="572" selection-end-column="42" />
               <folding>
                 <element signature="e#101#138#0" expanded="true" />
               </folding>
@@ -452,7 +452,13 @@
       <option name="project" value="LOCAL" />
       <updated>1493159294129</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="changed anything else to what else can I do">
+      <created>1493159571119</created>
+      <option name="number" value="00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1493159571119</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -541,7 +547,8 @@
     <MESSAGE value="fixed first iteration for listing missing ingredients" />
     <MESSAGE value="fixed if list length is 1" />
     <MESSAGE value="comment" />
-    <option name="LAST_COMMIT_MESSAGE" value="comment" />
+    <MESSAGE value="changed anything else to what else can I do" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed anything else to what else can I do" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -946,8 +953,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Lambda.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.8464224">
-          <caret line="303" column="82" selection-start-line="303" selection-start-column="82" selection-end-line="303" selection-end-column="82" />
+        <state vertical-scroll-proportion="0.06333333">
+          <caret line="572" column="42" selection-start-line="572" selection-start-column="42" selection-end-line="572" selection-end-column="42" />
           <folding>
             <element signature="e#101#138#0" expanded="true" />
           </folding>

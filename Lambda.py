@@ -574,13 +574,13 @@ def on_intent(intent_request, session):
         return can_recipe_be_made(intent, session)
     elif intent_name == "FilterOnTagsIntent":
         return get_recipes_from_tag(intent, session)
-    elif intent_name == "WhatCanIMake":
+    elif intent_name == "WhatCanIMakeIntent":
         return get_all_possible_recipes(intent, session)
-    elif intent_name == "IngredientSearch":
+    elif intent_name == "IngredientSearchIntent":
         return do_i_have_ingredient(intent, session)
-    elif intent_name == "RemoveIngredient":
+    elif intent_name == "RemoveIngredientIntent":
         return out_of_ingredient(intent, session)
-    elif intent_name == "AddIngredient":
+    elif intent_name == "AddIngredientIntent":
         return picked_up_ingredient(intent, session)
     elif intent_name == "SelectItemIntent":
         return select_handler(intent, session)
