@@ -724,7 +724,7 @@ def searchCookbookAll(db):
 def allRecipes(db):
     recipes = []
     try:
-        recs = db.cookbook.find({})
+        recipes = db.cookbook.find({})
     except:
         print ('Something wrong in try/except #1')
         return None
