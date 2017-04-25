@@ -722,7 +722,6 @@ def searchCookbookAll(db):
 
 
 def allRecipes(db):
-    recipes = []
     try:
         recipes = db.cookbook.find({})
     except:
