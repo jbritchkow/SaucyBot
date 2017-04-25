@@ -592,7 +592,7 @@ def on_intent(intent_request, session):
         return help_handler(intent, session)
     elif intent_name == "AMAZON.NextIntent":
         return next_handler(intent, session)
-    elif intent_name == "AMAZON.NoIntent":
+    elif intent_name == "NoIntent":
         return no_handler(intent, session)
     elif intent_name == "AMAZON.PreviousIntent":
         return previous_handler(intent, session)
@@ -600,7 +600,7 @@ def on_intent(intent_request, session):
         return repeat_handler(intent, session)
     elif intent_name == "AMAZON.StartOverIntent":
         return start_over_handler(intent, session)
-    elif intent_name == "AMAZON.YesIntent":
+    elif intent_name == "YesIntent":
         return yes_handler(intent, session)
     elif intent_name == "AMAZON.CancelIntent" or intent_name == "AMAZON.StopIntent":
         return no_handler(intent, session)
