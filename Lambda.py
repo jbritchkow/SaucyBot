@@ -1,10 +1,5 @@
 """
-This sample demonstrates a simple skill built with the Amazon Alexa Skills Kit.
-The Intent Schema, Custom Slots, and Sample Utterances for this skill, as well
-as testing instructions are located at http://amzn.to/1LzFrj6
-
-For additional samples, visit the Alexa Skills Kit Getting Started guide at
-http://amzn.to/1LGWsLG
+This is an Alexa skill called Saucy Bot for tracking recipes and ingredients in the kitchen
 """
 
 from __future__ import print_function
