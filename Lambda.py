@@ -167,8 +167,8 @@ def picked_up_ingredient(intent, session):
     if 'Ingredient' in intent['slots']:
         requested_ingredient = intent['slots']['Ingredient']['value']
         addIngredient(requested_ingredient,db)
-        speech_output = requested_ingredient + "was added to the pantry."
-        reprompt_text = requested_ingredient + "was successfully added to your pantry."
+        speech_output = requested_ingredient + " was added to the pantry."
+        reprompt_text = requested_ingredient + " was successfully added to your pantry."
     else:
         speech_output = "Please specify an ingredient."
         reprompt_text = "You need to specify an ingredient that you just picked up."
