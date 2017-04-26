@@ -513,6 +513,32 @@ def can_recipe_be_made(intent, session):
         card_title, speech_output, reprompt_text, should_end_session))
 
 
+def get_recipe_instructions(intent, session):
+    """ Texts the user with the instructions for the specified recipe
+    """
+    db = load_client()
+    card_title = intent['name']
+    session_attributes = {}
+    should_end_session = False
+
+    if 'Recipe' in intent['slots']:
+        requested_recipe = intent['slots']['Recipe']['value']
+        instructions = getRecipeSteps(requested_recipe, db)
+
+        if instructions is None:
+            speech_output = "Recipe not in Cookbook"
+            reprompt_text = speech_output
+        else:
+            speech_output = "Okay, sending instructions."
+            reprompt_text = "Instructions sent."
+            message_body = instructions
+#            message = twilio_client.api.account.messages.create(to="+12154506570", from_="+12242315628", body=message_body)
+
+
+    return build_response(session_attributes, build_speechlet_response(
+        card_title, speech_output, reprompt_text, should_end_session))
+
+
 def get_welcome_response():
     """ If we wanted to initialize the session to have some attributes we could
     add those here
@@ -574,6 +600,8 @@ def on_intent(intent_request, session):
         return can_recipe_be_made(intent, session)
     elif intent_name == "FilterOnTagsIntent":
         return get_recipes_from_tag(intent, session)
+    elif intent_name == "HowDoIMakeIntent":
+        return get_recipe_instructions(intent, session)
     elif intent_name == "WhatCanIMakeIntent":
         return get_all_possible_recipes(intent, session)
     elif intent_name == "IngredientSearchIntent":
@@ -682,6 +710,14 @@ def recipeIngredients(recipe, db):
     return ingredients
 
 
+def getRecipeSteps(recipe, db):
+    try:
+        rec = db.cookbook.find_one({'name': recipe})
+    except:
+        return None
+    return rec['steps']
+
+
 def checkPantry(recipe, db):
     # Returns list of None if you have everything for recipe
     # Returns list containing string 'Recipe not in Cookbook' if not in cookbook
@@ -700,9 +736,12 @@ def searchCookbookOn(tags, db):
     # Search cookbook based on whatever list of tags are specified by user
     # Either returns a list of recipe names or empty list if none match the tag
     recipes = []
-    recs = db.cookbook.find({'tags': {'$in': tags}})
-    for item in recs:
-        recipes.append(item['name'])
+    try:
+        recs = db.cookbook.find({'tags': {'$in': tags}})
+        for item in recs:
+            recipes.append(item['name'])
+    except:
+        return None
     return recipes
 
 
