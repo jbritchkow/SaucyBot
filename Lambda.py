@@ -266,7 +266,7 @@ def get_all_possible_recipes(intent, session):
     numResults = len(recipes)
 
     if recipes is None:
-        speech_output = 'Cannot find recipes in your Cook book'
+        speech_output = 'You have no recipes in your cook book'
         reprompt_text = speech_output
     elif numResults == 0:
         speech_output = 'You do not have the ingredients to make anything in your Cook book'
