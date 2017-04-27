@@ -27,8 +27,8 @@
       <file leaf-file-name="Lambda.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Lambda.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.60732985">
-              <caret line="537" column="83" selection-start-line="537" selection-start-column="83" selection-end-line="537" selection-end-column="83" />
+            <state vertical-scroll-proportion="0.7905759">
+              <caret line="497" column="46" selection-start-line="497" selection-start-column="46" selection-end-line="497" selection-end-column="46" />
               <folding>
                 <element signature="e#101#138#0" expanded="true" />
               </folding>
@@ -494,7 +494,13 @@
       <option name="project" value="LOCAL" />
       <updated>1493251672273</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="fixed all recipes">
+      <created>1493252570473</created>
+      <option name="number" value="00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1493252570473</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -991,8 +997,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Lambda.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.60732985">
-          <caret line="537" column="83" selection-start-line="537" selection-start-column="83" selection-end-line="537" selection-end-column="83" />
+        <state vertical-scroll-proportion="0.7905759">
+          <caret line="497" column="46" selection-start-line="497" selection-start-column="46" selection-end-line="497" selection-end-column="46" />
           <folding>
             <element signature="e#101#138#0" expanded="true" />
           </folding>
