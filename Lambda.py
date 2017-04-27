@@ -761,9 +761,12 @@ def searchCookbookAll(db):
 
 
 def allRecipes(db):
+    recs = []
     try:
         recipes = db.cookbook.find({})
+        for rec in recipes:
+            recs.append(rec['name'])
     except:
         print ('Something wrong in try/except #1')
         return None
-    return recipes
+    return recs
