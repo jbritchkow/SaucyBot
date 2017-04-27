@@ -96,7 +96,7 @@ def yes_handler(intent, session):
         requested_ingredient = session['attributes']['reminder']
         speech_output = "Okay, sending reminder."
         reprompt_text = "Reminder sent."
-        message = twilio_client.api.account.messages.create(to="+12154506570", from_="+12242315628", body="Remember to buy " + requested_ingredient + " at the store!")
+        message = twilio_client.api.account.messages.create(to="+18473634312", from_="+12242315628", body="Remember to buy " + requested_ingredient + " at the store!")
     elif session.get('attributes', {}) and "reminder_list" in session.get('attributes', {}):
         requested_ingredients = session['attributes']['reminder_list']
         speech_output = "Okay, sending reminder."
@@ -105,7 +105,7 @@ def yes_handler(intent, session):
         for ingredient in requested_ingredients:
             message_body += ingredient + ", "
         message_body = message_body[:-2]
-        message = twilio_client.api.account.messages.create(to="+12154506570", from_="+12242315628", body=message_body)
+        message = twilio_client.api.account.messages.create(to="+18473634312", from_="+12242315628", body=message_body)
     else:
         speech_output = "I don't understand what you mean."
         reprompt_text = speech_output
@@ -443,6 +443,12 @@ def select_handler(intent, session):
         if missing_ingredients is None:
             speech_output = "Recipe not in Cookbook"
             reprompt_text = speech_output
+        elif len(missing_ingredients) == 0:
+            instructions = getRecipeSteps(requested_recipe, db)
+            speech_output = "Okay, sending instructions."
+            reprompt_text = "Instructions sent."
+            message_body = instructions
+            message = twilio_client.api.account.messages.create(to="+18473634312", from_="+12242315628", body=message_body)
         elif len(missing_ingredients) == 1:
             speech_output = "You are missing " + missing_ingredients[0] + ". Would you like to set a reminder?"
             reprompt_text = speech_output
@@ -524,7 +530,7 @@ def get_recipe_instructions(intent, session):
             speech_output = "Okay, sending instructions."
             reprompt_text = "Instructions sent."
             message_body = instructions
-            message = twilio_client.api.account.messages.create(to="+12154506570", from_="+12242315628", body=message_body)
+            message = twilio_client.api.account.messages.create(to="+18473634312", from_="+12242315628", body=message_body)
     else:
         speech_output = "Please specify a recipe."
         reprompt_text = "You need to specify a recipe that you would like to make."
@@ -614,7 +620,7 @@ def on_intent(intent_request, session):
         return help_handler(intent, session)
     elif intent_name == "AMAZON.NextIntent":
         return next_handler(intent, session)
-    elif intent_name == "NoIntent":
+    elif intent_name == "AMAZON.NoIntent":
         return no_handler(intent, session)
     elif intent_name == "AMAZON.PreviousIntent":
         return previous_handler(intent, session)
@@ -622,7 +628,7 @@ def on_intent(intent_request, session):
         return repeat_handler(intent, session)
     elif intent_name == "AMAZON.StartOverIntent":
         return start_over_handler(intent, session)
-    elif intent_name == "YesIntent":
+    elif intent_name == "AMAZON.YesIntent":
         return yes_handler(intent, session)
     elif intent_name == "AMAZON.CancelIntent" or intent_name == "AMAZON.StopIntent":
         return no_handler(intent, session)
