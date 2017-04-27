@@ -4,7 +4,7 @@ This is an Alexa skill called Saucy Bot for tracking recipes and ingredients in 
 
 from __future__ import print_function
 import pymongo
-#from twilio.rest import Client
+from twilio.rest import Client
 
 # For Twilio
 account_sid = "ACdeabec075c0137d4fb10755551afd4e4"
