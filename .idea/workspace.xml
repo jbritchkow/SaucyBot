@@ -27,8 +27,8 @@
       <file leaf-file-name="Lambda.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Lambda.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.12479201">
-              <caret line="630" column="32" selection-start-line="630" selection-start-column="32" selection-end-line="630" selection-end-column="32" />
+            <state vertical-scroll-proportion="0.17470881">
+              <caret line="432" column="31" selection-start-line="432" selection-start-column="31" selection-end-line="432" selection-end-column="31" />
               <folding>
                 <element signature="e#101#138#0" expanded="true" />
               </folding>
@@ -524,7 +524,13 @@
       <option name="project" value="LOCAL" />
       <updated>1493267011310</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="changes">
+      <created>1493267648260</created>
+      <option name="number" value="00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1493267648260</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -591,7 +597,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="testing" />
     <MESSAGE value="updated gitignore" />
     <MESSAGE value="Added WhatCanIMake intent and get_all_possible_recipes method to handle intent/call database methods" />
     <MESSAGE value="changed mongo client to twilio" />
@@ -616,7 +621,8 @@
     <MESSAGE value="whitespace" />
     <MESSAGE value="fix select" />
     <MESSAGE value="can recipe be made" />
-    <option name="LAST_COMMIT_MESSAGE" value="can recipe be made" />
+    <MESSAGE value="changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="changes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1021,8 +1027,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Lambda.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.12479201">
-          <caret line="630" column="32" selection-start-line="630" selection-start-column="32" selection-end-line="630" selection-end-column="32" />
+        <state vertical-scroll-proportion="0.17470881">
+          <caret line="432" column="31" selection-start-line="432" selection-start-column="31" selection-end-line="432" selection-end-column="31" />
           <folding>
             <element signature="e#101#138#0" expanded="true" />
           </folding>

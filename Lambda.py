@@ -429,7 +429,7 @@ def select_handler(intent, session):
         uses code from can recipe be made intent handler on the current list item
     """
     db = load_client()
-
+    session_attributes = {}
     card_title = intent['name']
     should_end_session = False
 
