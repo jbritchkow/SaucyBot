@@ -27,8 +27,8 @@
       <file leaf-file-name="Lambda.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Lambda.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7905759">
-              <caret line="497" column="46" selection-start-line="497" selection-start-column="46" selection-end-line="497" selection-end-column="46" />
+            <state vertical-scroll-proportion="0.4712042">
+              <caret line="55" column="27" selection-start-line="55" selection-start-column="27" selection-end-line="55" selection-end-column="27" />
               <folding>
                 <element signature="e#101#138#0" expanded="true" />
               </folding>
@@ -500,7 +500,13 @@
       <option name="project" value="LOCAL" />
       <updated>1493252570473</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="whitespace">
+      <created>1493253010970</created>
+      <option name="number" value="00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1493253010970</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -590,9 +596,9 @@
     <MESSAGE value="changed anything else to what else can I do" />
     <MESSAGE value="no more amazon yes and no intent" />
     <MESSAGE value="how do i make intent" />
-    <MESSAGE value="whitespace" />
     <MESSAGE value="fixed all recipes" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed all recipes" />
+    <MESSAGE value="whitespace" />
+    <option name="LAST_COMMIT_MESSAGE" value="whitespace" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -997,8 +1003,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Lambda.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7905759">
-          <caret line="497" column="46" selection-start-line="497" selection-start-column="46" selection-end-line="497" selection-end-column="46" />
+        <state vertical-scroll-proportion="0.4712042">
+          <caret line="55" column="27" selection-start-line="55" selection-start-column="27" selection-end-line="55" selection-end-column="27" />
           <folding>
             <element signature="e#101#138#0" expanded="true" />
           </folding>

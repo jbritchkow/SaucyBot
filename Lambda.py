@@ -53,6 +53,8 @@ def set_session_attributes(index, length, arr, reminderFlag = False):
 
 
 def load_client():
+    # for testing in Lambda
+    #mongo_client = pymongo.MongoClient('mongodb://cwmason:Capstone2017@ec2-34-201-51-167.compute-1.amazonaws.com')
     global mongo_client
     return mongo_client['saucybot']
 
