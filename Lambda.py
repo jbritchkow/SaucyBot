@@ -7,9 +7,9 @@ import pymongo
 #from twilio.rest import Client
 
 # For Twilio
-#account_sid = "ACdeabec075c0137d4fb10755551afd4e4"
-#auth_token = "d9756d7b452e88b2f1ba8532aeb508fb"
-#twilio_client = Client(account_sid, auth_token)
+account_sid = "ACdeabec075c0137d4fb10755551afd4e4"
+auth_token = "d9756d7b452e88b2f1ba8532aeb508fb"
+twilio_client = Client(account_sid, auth_token)
 
 # For MongoDB
 uri = 'mongodb://cwmason:Capstone2017@ec2-34-201-51-167.compute-1.amazonaws.com'
@@ -96,7 +96,7 @@ def yes_handler(intent, session):
         requested_ingredient = session['attributes']['reminder']
         speech_output = "Okay, sending reminder."
         reprompt_text = "Reminder sent."
-#        message = twilio_client.api.account.messages.create(to="+12154506570", from_="+12242315628", body="Remember to buy " + requested_ingredient + " at the store!")
+        message = twilio_client.api.account.messages.create(to="+12154506570", from_="+12242315628", body="Remember to buy " + requested_ingredient + " at the store!")
     elif session.get('attributes', {}) and "reminder_list" in session.get('attributes', {}):
         requested_ingredients = session['attributes']['reminder_list']
         speech_output = "Okay, sending reminder."
@@ -105,7 +105,7 @@ def yes_handler(intent, session):
         for ingredient in requested_ingredients:
             message_body += ingredient + ", "
         message_body = message_body[:-2]
-#        message = twilio_client.api.account.messages.create(to="+12154506570", from_="+12242315628", body=message_body)
+        message = twilio_client.api.account.messages.create(to="+12154506570", from_="+12242315628", body=message_body)
     else:
         speech_output = "I don't understand what you mean."
         reprompt_text = speech_output
@@ -534,7 +534,7 @@ def get_recipe_instructions(intent, session):
             speech_output = "Okay, sending instructions."
             reprompt_text = "Instructions sent."
             message_body = instructions
-#            message = twilio_client.api.account.messages.create(to="+12154506570", from_="+12242315628", body=message_body)
+            message = twilio_client.api.account.messages.create(to="+12154506570", from_="+12242315628", body=message_body)
     else:
         speech_output = "Please specify a recipe."
         reprompt_text = "You need to specify a recipe that you would like to make."
