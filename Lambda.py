@@ -449,11 +449,6 @@ def select_handler(intent, session):
             session_attributes = {"reminder": missing_ingredients[0]}
         elif len(missing_ingredients) > 1:
             speech_output = "You are missing some ingredients. "
-            missing_ingredients_string = ""
-            for x in missing_ingredients:
-                #speech_output += x + ", "
-                missing_ingredients_string += x + ", "
-            speech_output = speech_output[:-2]
             speech_output += "Would you like to set a reminder for these ingredients? " \
                 "The first missing ingredient is " + missing_ingredients[0] + ". " \
                 "Use next and previous to navigate the list, or say yes at any time to send reminder."
