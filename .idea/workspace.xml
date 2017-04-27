@@ -27,8 +27,8 @@
       <file leaf-file-name="Lambda.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Lambda.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.89528793">
-              <caret line="771" column="15" selection-start-line="771" selection-start-column="15" selection-end-line="771" selection-end-column="15" />
+            <state vertical-scroll-proportion="0.60732985">
+              <caret line="537" column="83" selection-start-line="537" selection-start-column="83" selection-end-line="537" selection-end-column="83" />
               <folding>
                 <element signature="e#101#138#0" expanded="true" />
               </folding>
@@ -488,7 +488,13 @@
       <option name="project" value="LOCAL" />
       <updated>1493250941200</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="fixed all recipes">
+      <created>1493251672273</created>
+      <option name="number" value="00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1493251672273</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -555,7 +561,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="store pymongo client globally for use in methods" />
     <MESSAGE value="rename variable client to avoid shadowing global variable" />
     <MESSAGE value="load_client method" />
     <MESSAGE value="testing" />
@@ -580,7 +585,8 @@
     <MESSAGE value="no more amazon yes and no intent" />
     <MESSAGE value="how do i make intent" />
     <MESSAGE value="whitespace" />
-    <option name="LAST_COMMIT_MESSAGE" value="whitespace" />
+    <MESSAGE value="fixed all recipes" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed all recipes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -985,8 +991,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Lambda.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.89528793">
-          <caret line="771" column="15" selection-start-line="771" selection-start-column="15" selection-end-line="771" selection-end-column="15" />
+        <state vertical-scroll-proportion="0.60732985">
+          <caret line="537" column="83" selection-start-line="537" selection-start-column="83" selection-end-line="537" selection-end-column="83" />
           <folding>
             <element signature="e#101#138#0" expanded="true" />
           </folding>

@@ -533,7 +533,9 @@ def get_recipe_instructions(intent, session):
             reprompt_text = "Instructions sent."
             message_body = instructions
 #            message = twilio_client.api.account.messages.create(to="+12154506570", from_="+12242315628", body=message_body)
-
+    else:
+        speech_output = "Please specify a recipe."
+        reprompt_text = "You need to specify a recipe that you would like to make."
 
     return build_response(session_attributes, build_speechlet_response(
         card_title, speech_output, reprompt_text, should_end_session))
